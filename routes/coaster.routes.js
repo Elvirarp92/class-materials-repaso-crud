@@ -8,7 +8,7 @@ const Park = require('./../models/park.model')
 
 //CREATING COASTERS
 
-router.get('/new', (req, res) =>
+router.get('/new', (req, res, next) =>
   Park.find()
     .then((parks) => {
       res.render('coasters/new-coaster', { parks })
@@ -34,11 +34,22 @@ router.post('/new', (req, res, next) => {
 
 //COASTER INDEX + DETAILS
 
-router.get('/', (req, res) => {
+router.get('/', (req, res, next) => {
   Coaster.find()
     .populate('park')
     .then((coasters) => {
       res.render('coasters/coasters-index', { coasters })
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
+
+router.get('/:id', (req, res, next) => {
+  Coaster.findById(req.params.id)
+    .populate('park')
+    .then((coaster) => {
+      res.render('coasters/coaster-details', coaster)
     })
     .catch((err) => {
       next(err)
