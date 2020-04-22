@@ -56,4 +56,16 @@ router.get('/:id', (req, res, next) => {
     })
 })
 
+//DELETE COASTER
+
+router.post('/:id', (req, res, next) => {
+  Coaster.findByIdAndDelete(req.params.id)
+    .then(() => {
+      res.redirect('/coasters')
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
+
 module.exports = router

@@ -15,5 +15,8 @@
   {{/each}}
 
   <a href="/coasters" class="btn btn-dark">Volver</a>
+  <form action="/coasters/{{_id}}" method="POST">
+    <button type="submit" class="btn btn-danger">Borrar</button>
+  </form>
 
 </div>
