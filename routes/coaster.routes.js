@@ -16,4 +16,18 @@ router.get('/new', (req, res) =>
     })
 )
 
+router.post('/new', (req, res, next) => {
+  const { name, description, inversions, length, park } = req.body
+  console.log("hey")
+
+  Coaster.create({name, description, inversions, length, park})
+    .then(() => {
+      res.redirect('/')
+    })
+    .catch((err) => {
+      console.log(err)
+      next(err)
+    })
+})
+
 module.exports = router
