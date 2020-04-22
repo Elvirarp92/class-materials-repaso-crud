@@ -68,4 +68,16 @@ router.post('/:id', (req, res, next) => {
     })
 })
 
+//EDIT COASTER
+
+router.get('/:id/edit', (req, res, next) => {
+  Coaster.findById(req.params.id)
+    .then((coaster) => {
+      res.render('coasters/coaster-edit', coaster)
+    })
+    .catch((err) => {
+      next(err)
+    })
+})
+
 module.exports = router
