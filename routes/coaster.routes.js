@@ -24,7 +24,7 @@ router.post('/new', (req, res, next) => {
 
   Coaster.create({ name, description, inversions, length, park })
     .then(() => {
-      res.redirect('/')
+      res.redirect('/coasters')
     })
     .catch((err) => {
       console.log(err)
